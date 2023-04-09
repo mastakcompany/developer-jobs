@@ -68,6 +68,8 @@ SuperJob Moscow
 | Ruby                 | 10               | 4                    | 81250           |
 +----------------------+------------------+----------------------+-----------------+
 ```
+### Project Goals
+The code is written for educational purposes on online-course for web-developers [dvmn.org](https://dvmn.org/)
 
 ### License
 This program is licensed under the MIT License. See the LICENSE file

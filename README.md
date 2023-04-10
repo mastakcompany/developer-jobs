@@ -6,17 +6,28 @@ This program predicts the average salary for programming jobs in Moscow based on
 
 ### Dependencies
 
-* requests
-* terminaltables
-* python-dotenv
-* statistics
+* requests==2.28.*
+* terminaltables==3.1.*
+* python-dotenv==1.0.*
 
 ### Setup
 
-1. Clone this repository to your local machine.
-2. Create a virtual environment: python3 -m venv env
-3. Activate the virtual environment: source env/bin/activate
-4. Install dependencies: pip install -r requirements.txt
+1. Clone this repository to your local machine:
+```commandline
+git clone https://github.com/mastakcompany/developer-jobs.git
+```
+2. Create a virtual environment:
+```commandline
+python3 -m venv env
+```
+3. Activate the virtual environment:
+```commandline
+source env/bin/activate
+```
+4. Install dependencies:
+```commandline
+pip install -r requirements.txt
+```
 5. Create a .env file in the root directory of the project and add your SuperJob API key:
 ```
 SUPERJOB_APIKEY=<your_superjob_api_key>

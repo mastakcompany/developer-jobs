@@ -31,16 +31,19 @@ def predict_rub_salary_hh(vacancy):
 
 def get_vacancies_headhunter():
     api_endpoint = 'https://api.hh.ru/vacancies'
+    api_page_constraint = 100
+    vacancies_area = '1'
+    vacancies_processing_period = 30
     popular_vacancy = {}
     for language in PROGRAMMING_LANGUAGES:
         language_vacancies = []
         for page in count(0):
-            if page >= 100:
+            if page >= api_page_constraint:
                 break
             params = {
                 'text': f'Программист {language}',
-                'area': '1',
-                'period': 30,
+                'area': vacancies_area,
+                'period': vacancies_processing_period,
                 'page': page
             }
             response = requests.get(api_endpoint, params=params)
@@ -68,24 +71,27 @@ def predict_rub_salary_sj(vacancy):
     return predict_salary(salary_from, salary_to)
 
 
-def get_vacancies_superjob():
-    load_dotenv()
+def get_vacancies_superjob(api_key):
     api_endpoint = 'https://api.superjob.ru/2.0/vacancies/'
     headers = {
-        'X-Api-App-Id': os.environ['SUPERJOB_APIKEY']
+        'X-Api-App-Id': api_key
     }
+    api_page_constraint = 5
+    vacancies_area = 4
+    search_directory = 48
+    number_vacancies_on_page = 100
     popular_vacancy = {}
     for language in PROGRAMMING_LANGUAGES:
         language_vacancies = []
         for page in count():
-            if page >= 5:
+            if page >= api_page_constraint:
                 break
             params = {
                 'keyword': f'Программист {language}',
-                'town': 4,
-                'catalogues': 48,
+                'town': vacancies_area,
+                'catalogues': search_directory,
                 'page': page,
-                'count': 100
+                'count': number_vacancies_on_page
             }
             response = requests.get(api_endpoint, params=params, headers=headers)
             response.raise_for_status()
@@ -120,6 +126,8 @@ def print_table(vacancies, site):
 
 
 if __name__ == '__main__':
+    load_dotenv()
+    api_key = os.environ['SUPERJOB_APIKEY']
     print_table(get_vacancies_headhunter(), 'HeadHunter')
     print()
-    print_table(get_vacancies_superjob(), 'SuperJob')
+    print_table(get_vacancies_superjob(api_key), 'SuperJob')

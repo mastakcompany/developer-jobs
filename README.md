@@ -28,7 +28,7 @@ source env/bin/activate
 ```commandline
 pip install -r requirements.txt
 ```
-5. Create a .env file in the root directory of the project and add your SuperJob API key:
+5. Create a .env file in the root directory of the project and add your SuperJob API key (you can see an example of how the API key should be written in the .env.exapmle file):
 ```
 SUPERJOB_APIKEY=<your_superjob_api_key>
 ```
